@@ -22,24 +22,25 @@ public class Sport extends CordovaPlugin {
 
     private SerialPort serialPort = null;
     protected OutputStream mOutputStream;
-    
-    public void open(String message, String port, int baudrate) throws JSONException, SecurityException, IOException, InvalidParameterException {
+
+    public void open(String message, String port, int baudrate)
+            throws JSONException, SecurityException, IOException, InvalidParameterException {
 
         try {
-                File file = new File (port);
-                serialPort = new SerialPort(file, baudrate, 0);
+            File file = new File(port);
+            serialPort = new SerialPort(file, baudrate, 0);
 
-                mOutputStream = serialPort.getOutputStream();
-                mOutputStream.write(new BigInteger(message, 16).toByteArray());
-                serialPort.close();
-                serialPort = null;
+            mOutputStream = serialPort.getOutputStream();
+            mOutputStream.write(new BigInteger(message, 16).toByteArray());
+            serialPort.close();
+            serialPort = null;
 
-                mCallbackContext.success("success");
-                
+            mCallbackContext.success("success");
+
         } catch (IOException ex) {
-                ex.printStackTrace();
-                
-                mCallbackContext.error("open fail");
+            ex.printStackTrace();
+
+            mCallbackContext.error("open fail");
         }
     }
 
@@ -58,7 +59,7 @@ public class Sport extends CordovaPlugin {
                 this.open(message, port, baudrate);
 
             } catch (IOException ex) {
-                
+
                 callbackContext.error("error");
                 ex.printStackTrace();
 
