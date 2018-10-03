@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-        id="serialport-plugin"
-        version="0.0.1">
-
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" id="serialport-plugin" version="0.0.1">
+  <!-- 
   <name>Sport</name>
 
   <engines>
@@ -23,7 +21,31 @@
       </feature>
     </config-file>
 
-    <source-file src="src/android/Sport.java" target-dir="src/android_serialport_api"/>
+<source-file src="src/android/Sport.java" target-dir="src/android_serialport_api"/> -->
+
+  <name>PrintUtil</name>
+
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
+
+  <asset src="www/printutil.js" target="js/printutil.js"/>
+
+  <js-module src="www/printutil.js" name="printutil">
+    <clobbers target="cordova.plugins.SerialPort" />
+  </js-module>
+
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="PrintUtil">
+        <param name="android-package" value="android_serialport_api.PrintUtil"/>
+      </feature>
+    </config-file>
+
+
+
+    <source-file src="src/android/PrintUtil.java" target-dir="src/android_serialport_api"/>
     <source-file src="src/android/SerialPort.java" target-dir="src/android_serialport_api"/>
     <source-file src="src/android/SerialPortFinder.java" target-dir="src/android_serialport_api"/>
     <source-file src="src/android/libs/armeabi/libserial_port.so" target-dir="libs/armeabi"/>
