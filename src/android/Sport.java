@@ -22,7 +22,6 @@ public class Sport extends CordovaPlugin {
 
     private SerialPort serialPort = null;
     protected OutputStream mOutputStream;
-    private InputStream mInputStream;
     
     public void open(String message, String port, int baudrate) throws JSONException, SecurityException, IOException, InvalidParameterException {
 
