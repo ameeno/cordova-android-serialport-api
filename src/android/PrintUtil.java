@@ -40,7 +40,7 @@ public class PrintUtil extends CordovaPlugin {
     public static byte[] getGbk(String paramString) {
         byte[] arrayOfByte = null;
         try {
-            arrayOfByte = paramString.getBytes("GBK"); // 斛剕溫婓try囀符褫眕
+            arrayOfByte = paramString.getBytes("GBK"); // 斛剕温婓try啭符褫眕
         } catch (Exception ex) {
             ;
         }
@@ -54,25 +54,25 @@ public class PrintUtil extends CordovaPlugin {
         return arrayOfByte;
     }
 
-    public static byte[] PrintBarcode(String paramString) // 沭鎢 GS k
+    public static byte[] PrintBarcode(String paramString) // Tungsten GS k
     {
         byte[] arrayOfByte = new byte[13 + paramString.length()];
-        // 扢离沭鎢詢僅
+        // Query only
         arrayOfByte[0] = 0x1D;
         arrayOfByte[1] = 'h';
         arrayOfByte[2] = 0x60; // 1善255
 
-        // 扢离沭鎢遵僅
+        // 扢沭沭遵遵
         arrayOfByte[3] = 0x1D;
         arrayOfByte[4] = 'w';
         arrayOfByte[5] = 2; // 2善6
 
-        // 扢离沭鎢恅趼湖荂弇离
+        // 扢沭沭沭沭沭沭
         arrayOfByte[6] = 0x1D;
         arrayOfByte[7] = 'H';
         arrayOfByte[8] = 2; // 0善3
 
-        // 湖荂39沭鎢
+        // Lake 荂39沭tungsten
         arrayOfByte[9] = 0x1D;
         arrayOfByte[10] = 'k';
         arrayOfByte[11] = 0x45;
@@ -102,12 +102,12 @@ public class PrintUtil extends CordovaPlugin {
         return arrayOfByte;
     }
 
-    public static byte[] setBold(boolean paramBoolean) // 樓棉 ESC E
+    public static byte[] setBold(boolean paramBoolean) // Floor cotton ESC E
     {
         byte[] arrayOfByte = new byte[3];
         arrayOfByte[0] = 0x1B;
         arrayOfByte[1] = 0x45;
-        if (paramBoolean) // 桶尨樓棉
+        if (paramBoolean) // Barrel
         {
             arrayOfByte[2] = 0x01;
         } else {
@@ -116,7 +116,7 @@ public class PrintUtil extends CordovaPlugin {
         return arrayOfByte;
     }
 
-    public static byte[] setLineH(int h) // 扢离俴詢ㄛh 0-255
+    public static byte[] setLineH(int h) // 扢离俴ㄛㄛh 0-255
     {
         byte[] arrayOfByte = new byte[3];
         arrayOfByte[0] = 0x1B;
@@ -125,7 +125,7 @@ public class PrintUtil extends CordovaPlugin {
         return arrayOfByte;
     }
 
-    public static byte[] setWH(char paramChar) // GS ! 扢离湖荂趼睫湮苤
+    public static byte[] setWH(char paramChar) // GS ! 扢荂趼荂趼荂趼荂趼
     {
         byte[] arrayOfByte = new byte[3]; // GS ! 11H 捷遵捷詢
         arrayOfByte[0] = 0x1D;
@@ -162,6 +162,11 @@ public class PrintUtil extends CordovaPlugin {
         returnText[2] = (byte) (position % 256);
         returnText[3] = (byte) (position / 256);
         return returnText;
+    }
+
+    public boolean printJSON(JSONArray ob) {
+        byte[] byteArray = (ob.toString()).getBytes();
+        return (printBytes(byteArray));
     }
 
     public static boolean printBytes(byte[] printText) {
